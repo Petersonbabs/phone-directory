@@ -12,8 +12,8 @@ const App = () => {
           <Route
             path="/"
             element={
-              <div className="flex">
-                <UserNav />
+              <div className="">
+                {/* <UserNav /> */}
                 <UserListTable />
               </div>
             }
