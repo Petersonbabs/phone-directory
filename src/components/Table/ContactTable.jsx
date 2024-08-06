@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { PlusCircle, EllipsisVertical, PhoneCallIcon } from "lucide-react";
+import { EllipsisVertical, PhoneCallIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +16,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useContactContext } from "@/contexts/ContactsContext";
 import { Link } from "react-router-dom";
-import Modal from "../modal/Modal"; 
-import deafultImage from "../../../public/default-user.png"
+import Modal from "../modal/Modal";
+import deafultImage from "../../../public/default-user.png";
 
 const UserListTable = ({ deleteContact, editContact }) => {
-  const { contacts } = useContactContext();
+  const { contacts, getContacts } = useContactContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -31,13 +31,16 @@ const UserListTable = ({ deleteContact, editContact }) => {
     }
   };
 
-  const filteredContacts =
-    contacts?.filter(
-      (contact) =>
-        contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
-    ) || [];
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  const filteredContacts = contacts?.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contact.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
+  ) || [];
 
   const totalContacts = filteredContacts.length;
   const totalPages = Math.ceil(totalContacts / pageSize);

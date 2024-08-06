@@ -108,6 +108,7 @@ const AddContactForm = ({ onClose }) => {
           onClick={(e) => {
             e.preventDefault();
             addNewContact(form.getValues())
+            onClose()
           }}
         >
           Submit
