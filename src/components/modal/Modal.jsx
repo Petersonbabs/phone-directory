@@ -16,7 +16,7 @@ import { PlusIcon } from "lucide-react";
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <button className="bg-orange text-white  text-sm rounded hover:bg-darkOrange flex align-center gap-2 h-fit py-2 px-4">
+          <button className="add-new-btn bg-orange text-white  text-sm rounded hover:bg-darkOrange flex align-center gap-2 h-fit py-2 px-4">
             <PlusIcon className="size-4 text-white" />
             <span>Add New</span>
           </button>

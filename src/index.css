@@ -73,3 +73,7 @@
 .contact-row:hover .call-icon {
   color: var(--orange);
 }
+
+.add-new-btn span{
+  font-size: clamp(10px, 1rem 1.2rem);
+}
