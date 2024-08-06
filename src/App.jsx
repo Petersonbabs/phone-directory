@@ -4,6 +4,7 @@ import UserNav from "./components/Nav/UserNav";
 import UserListTable from "./components/Table/ContactTable";
 import ContactsProvider from "./contexts/ContactsContext";
 
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -12,16 +13,17 @@ const App = () => {
           <Route
             path="/"
             element={
-              <div className="">
+              <div className="w-95  m-auto">
                 {/* <UserNav /> */}
                 <UserListTable />
+                {/* <AddContactForm /> */}
               </div>
             }
           />
           <Route
             path="/:id"
             element={
-              <div className="flex">
+              <div className="flex transition-all">
                 <UserNav />
                 <UserListTable />
               </div>

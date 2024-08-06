@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useContactContext } from "@/contexts/ContactsContext";
 import { Link } from "react-router-dom";
+import Modal from "../modal/Modal"; 
 
-const UserListTable = ({ addNewContact, deleteContact, editContact }) => {
+const UserListTable = ({ deleteContact, editContact }) => {
   const { contacts } = useContactContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,13 +58,7 @@ const UserListTable = ({ addNewContact, deleteContact, editContact }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="border p-2 rounded"
         />
-        <Button
-          onClick={addNewContact}
-          className="bg-orange flex gap-3 hover:bg-darkOrange"
-        >
-          <PlusCircle />
-          <span>New Contact</span>
-        </Button>
+        <Modal />
       </div>
       {/* TABLE SECTION */}
       <Table>
@@ -78,12 +73,9 @@ const UserListTable = ({ addNewContact, deleteContact, editContact }) => {
         <TableBody>
           {displayedContacts.length > 0 ? (
             displayedContacts.map((contact, index) => (
-              <TableRow
-                key={index}
-                className="border-t-none contact-row"
-              >
-                <Link to={`/${contact.id}`}>
-                  <TableCell className="flex align-center gap-4 hover:shadow">
+              <TableRow key={index} className="border-t-none contact-row">
+                <TableCell className="flex align-center gap-4 hover:shadow">
+                  <Link to={`/${contact.id}`}>
                     <div className="w-10 h-10">
                       <img
                         src={contact.image}
@@ -97,13 +89,13 @@ const UserListTable = ({ addNewContact, deleteContact, editContact }) => {
                       </p>
                       <p className="text-xs text-gray-500">{contact.email}</p>
                     </div>
-                  </TableCell>
-                </Link>
+                  </Link>
+                </TableCell>
                 <TableCell>{contact.phoneNumber}</TableCell>
                 <TableCell>
-                  <button>
+                  <a href={`tel:${contact.phoneNumber}`}>
                     <PhoneCallIcon className="size-4 hover:text-orange transition-all call-icon" />
-                  </button>
+                  </a>
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
