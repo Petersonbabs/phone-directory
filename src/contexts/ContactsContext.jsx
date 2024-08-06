@@ -5,14 +5,15 @@ export const useContactContext = () => {
   return useContext(ContactsContext);
 };
 
+const fetchedContacts = JSON.parse(localStorage.getItem("contacts")) || []
+
 const ContactsProvider = ({ children }) => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem("contacts"))
-  );
+  const [contacts, setContacts] = useState(fetchedContacts);
   const [singleContact, setSingleContact] = useState({});
 
-  const addNewContact = (id, formData) => {
+  const addNewContact = (formData) => {
     const contactId = Math.floor(Math.random() * 9999);
+    formData.id = contactId;
     const contactExists = contacts.find(
       (contact) => contact.phoneNumber == formData.phoneNumber
     );
@@ -25,7 +26,8 @@ const ContactsProvider = ({ children }) => {
 
     updatedContacts = contacts.push(formData);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-    setCart(updatedCart);
+    alert(`${formData.name} has been added!`);
+    setContacts(updatedContacts);
   };
 
   // GET SINGLE CONTACT

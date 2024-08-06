@@ -26,11 +26,11 @@ const UserNav = () => {
         </div>
         <h2 className="text-lg font-semibold mt-4">{singleContact?.name}</h2>
         <div className="flex justify-between w-3/4 mx-auto my-2 text-gray-400">
-          <a href={`tel:${singleContact.phoneNumber}`}>
+          <a href={`tel:${singleContact?.phoneNumber}`}>
             <PhoneCall className="size-6 hover:text-orange cursor-pointer" />
           </a>
           |
-          <a href={`mailto:${singleContact.email}`}>
+          <a href={`mailto:${singleContact?.email}`}>
             <Mail className="hover:text-orange cursor-pointer" />
           </a>
         </div>

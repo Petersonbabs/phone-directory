@@ -17,6 +17,7 @@ import {
 import { useContactContext } from "@/contexts/ContactsContext";
 import { Link } from "react-router-dom";
 import Modal from "../modal/Modal"; 
+import deafultImage from "../../../public/default-user.png"
 
 const UserListTable = ({ deleteContact, editContact }) => {
   const { contacts } = useContactContext();
@@ -78,7 +79,7 @@ const UserListTable = ({ deleteContact, editContact }) => {
                   <Link to={`/${contact.id}`}>
                     <div className="w-10 h-10">
                       <img
-                        src={contact.image}
+                        src={contact.image || deafultImage}
                         alt={contact.name}
                         className="w-full rounded-full"
                       />

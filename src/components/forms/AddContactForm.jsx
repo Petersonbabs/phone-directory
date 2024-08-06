@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useContactContext } from "@/contexts/ContactsContext";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -47,6 +47,7 @@ const formSchema = z.object({
 });
 
 const AddContactForm = ({ onClose }) => {
+  const { addNewContact } = useContactContext();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,22 +58,10 @@ const AddContactForm = ({ onClose }) => {
     },
   });
 
-  const onSubmit = (values) => {
-    console.log("Form values:", values); // Logs form values
-    onClose();
-    alert("Form submitted successfully!");
-  };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("Form submit event triggered");
-          form.handleSubmit(onSubmit)
-        }}
-        className="space-y-8"
-      >
+      <form className="space-y-8">
         <FormField
           control={form.control}
           name="name"
@@ -114,7 +103,15 @@ const AddContactForm = ({ onClose }) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <button
+          className="bg-orange py-2 px-4 text-white"
+          onClick={(e) => {
+            e.preventDefault();
+            addNewContact(form.getValues())
+          }}
+        >
+          Submit
+        </button>
       </form>
     </Form>
   );
