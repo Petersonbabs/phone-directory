@@ -26,19 +26,6 @@ const ContactsProvider = ({ children }) => {
     updatedContacts = contacts.push(formData);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
     setCart(updatedCart);
-
-    // setMessageTitle("Adding to cart!");
-
-    // setMessage(`${product.name} will be added to cart...`);
-    // setTimeout(() => {
-    //   setMessageTitle("Successful!");
-    //   setMessage(`${product.name} has been added to cart.`);
-    //   setLoadingCart(false);
-
-    //   setTimeout(() => {
-    //     clearMessage();
-    //   }, 5000);
-    // }, 3000);
   };
 
   // GET SINGLE CONTACT

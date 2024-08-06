@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -47,7 +46,7 @@ const formSchema = z.object({
   image: imageSchema.optional(),
 });
 
-const AddContactForm = () => {
+const AddContactForm = ({ onClose }) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,13 +57,22 @@ const AddContactForm = () => {
     },
   });
 
-  function onSubmit(values) {
-    console.log(values);
-  }
+  const onSubmit = (values) => {
+    console.log("Form values:", values); // Logs form values
+    onClose();
+    alert("Form submitted successfully!");
+  };
 
   return (
-    <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <Form {...form}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("Form submit event triggered");
+          form.handleSubmit(onSubmit)
+        }}
+        className="space-y-8"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -74,9 +82,6 @@ const AddContactForm = () => {
               <FormControl>
                 <Input placeholder="name" {...field} />
               </FormControl>
-              {/* <FormDescription>
-              This is your public display name.
-            </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
@@ -91,9 +96,6 @@ const AddContactForm = () => {
               <FormControl>
                 <Input placeholder="email" {...field} />
               </FormControl>
-              {/* <FormDescription>
-              This is your public display name.
-            </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
@@ -104,13 +106,10 @@ const AddContactForm = () => {
           name="phoneNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>phone</FormLabel>
+              <FormLabel>Phone</FormLabel>
               <FormControl>
                 <Input placeholder="09088888888" {...field} />
               </FormControl>
-              {/* <FormDescription>
-              This is your public display name.
-            </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
