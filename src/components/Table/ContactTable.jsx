@@ -35,7 +35,6 @@ const UserListTable = ({ deleteContact }) => {
 
   useEffect(() => {
     getContacts();
-    console.log(contacts);
   }, []);
 
   const filteredContacts =
@@ -55,6 +54,12 @@ const UserListTable = ({ deleteContact }) => {
 
   return (
     <div className="bg-white p-4">
+      <div className="w-95 md:max-w-4xl my-5 m-auto">
+        <PhoneCallIcon className="size-16 center m-auto text-orange " />
+        <h1 className="text-3xl text-center mb-8">
+          Computer Science Department Phone Directory
+        </h1>
+      </div>  
       <div
         className="flex justify-between align-center m-auto bg-white py-1 mb-8"
         style={{ width: "96%" }}
@@ -69,7 +74,7 @@ const UserListTable = ({ deleteContact }) => {
         <Modal />
       </div>
       {/* TABLE SECTION */}
-      <Table>
+      <Table className="border rounded">
         <TableHeader className="bg-tableHeadBg border-none">
           <TableRow>
             <TableHead>Name</TableHead>
@@ -119,7 +124,7 @@ const UserListTable = ({ deleteContact }) => {
                           Edit
                         </p>
                       </EditContactModal>
-                      <DeleteContactModal >
+                      <DeleteContactModal>
                         <p
                           onClick={() => deleteContact(contact.id)}
                           className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"

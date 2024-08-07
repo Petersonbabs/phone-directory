@@ -24,7 +24,7 @@ import { useState } from "react";
         <AlertDialogTrigger asChild>
           <button className="add-new-btn bg-orange text-white  text-sm rounded hover:bg-darkOrange flex align-center gap-2 h-fit py-2 px-4" onClick={handleOpen}>
             <PlusIcon className="size-6 sm:size-4 text-white" />
-            <span className="hidden">Add New</span>
+            <span className="hidden sm:inline">Add New</span>
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent>
