@@ -24,7 +24,7 @@ const ContactsProvider = ({ children }) => {
     const updatedContacts = [...contacts, formData];
     setContacts(updatedContacts);
     localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-    console.log(updatedContacts);
+
   };
 
   // GET CONTACTS
@@ -40,6 +40,25 @@ const ContactsProvider = ({ children }) => {
     setSingleContact(contacts?.find((contact) => contact.id == id));
   };
 
+  // EDIT CONTACT
+  const editContact = (id, updatedData) => {
+    const updatedContacts = contacts.map((contact) =>
+      contact.id === id ? { ...contact, ...updatedData } : contact
+    );
+
+    setContacts(updatedContacts);
+    localStorage.setItem('contacts', JSON.stringify(updatedContacts));
+  };
+
+  // DELETE CONTACT
+  const deleteContact = (contactId) => {
+    const updatedContacts = contacts.filter((contact) => contact.id !== contactId);
+    setContacts(updatedContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+    console.log(updatedContacts);
+  };
+
+
   const value = {
     contacts,
     singleContact,
@@ -47,6 +66,8 @@ const ContactsProvider = ({ children }) => {
     getContacts,
     setContacts,
     addNewContact,
+    editContact,
+    deleteContact
   };
 
   return (

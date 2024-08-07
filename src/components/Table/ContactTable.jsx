@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -16,10 +16,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useContactContext } from "@/contexts/ContactsContext";
 import { Link } from "react-router-dom";
-import Modal from "../modal/Modal";
-import deafultImage from "../../../public/default-user.png";
+import Modal from "../modal/AddContactModal";
+import defaultImage from "../../../public/default-user.png";
+import EditContactModal from "../modal/EditContactModal"; // Adjust the import path
+import DeleteContactModal from "../modal/DeleteContactModal";
 
-const UserListTable = ({ deleteContact, editContact }) => {
+const UserListTable = ({ deleteContact }) => {
   const { contacts, getContacts } = useContactContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,14 +35,16 @@ const UserListTable = ({ deleteContact, editContact }) => {
 
   useEffect(() => {
     getContacts();
+    console.log(contacts);
   }, []);
 
-  const filteredContacts = contacts?.filter(
-    (contact) =>
-      contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      contact.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
-  ) || [];
+  const filteredContacts =
+    contacts?.filter(
+      (contact) =>
+        contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
+    ) || [];
 
   const totalContacts = filteredContacts.length;
   const totalPages = Math.ceil(totalContacts / pageSize);
@@ -82,7 +86,7 @@ const UserListTable = ({ deleteContact, editContact }) => {
                   <Link to={`/${contact.id}`}>
                     <div className="w-10 h-10">
                       <img
-                        src={contact.image || deafultImage}
+                        src={contact.image || defaultImage}
                         alt={contact.name}
                         className="w-full rounded-full"
                       />
@@ -110,18 +114,19 @@ const UserListTable = ({ deleteContact, editContact }) => {
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent>
-                      <p
-                        onClick={() => editContact(contact.id)}
-                        className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"
-                      >
-                        Edit
-                      </p>
-                      <p
-                        onClick={() => deleteContact(contact.id)}
-                        className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"
-                      >
-                        Delete
-                      </p>
+                      <EditContactModal cid={contact.id}>
+                        <p className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg">
+                          Edit
+                        </p>
+                      </EditContactModal>
+                      <DeleteContactModal >
+                        <p
+                          onClick={() => deleteContact(contact.id)}
+                          className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"
+                        >
+                          Delete
+                        </p>
+                      </DeleteContactModal>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>

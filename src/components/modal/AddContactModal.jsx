@@ -34,7 +34,10 @@ import { useState } from "react";
               Please fill out the form below to add a new contact.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AddContactForm onClose={handleClose}/>
+          {
+            <AddContactForm onClose={handleClose}/>
+
+          }
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
           </AlertDialogFooter>
