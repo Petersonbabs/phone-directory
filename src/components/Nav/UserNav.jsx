@@ -10,9 +10,9 @@ const UserNav = () => {
 
   useEffect(() => {
     if (contacts) {
-      getSingleContact(id);
+      getSingleContact(id);  
     }
-  });
+  }, []);
 
   return (
     <div className="border w-full md:w-1/3 hidden md:block p-4 bg-gray-100">

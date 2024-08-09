@@ -31,17 +31,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route
-              path="/:id"
-              element={
-                <PrivateRoute>
-                  <div className="flex transition-all">
-                    <UserNav />
-                    <UserListTable />
-                  </div>
-                </PrivateRoute>
-              }
-            />
+           
           </Routes>
         </ContactsProvider>
       </AuthProvider>

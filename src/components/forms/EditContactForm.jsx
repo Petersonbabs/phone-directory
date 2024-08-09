@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useContactContext } from '@/contexts/ContactsContext';
-import EditContactModal from '../modal/EditContactModal';
 
 const EditContactForm = ({ contactId, isOpen, onClose }) => {
-  const { getContacts, contacts, editContact } = useContactContext();
+  const { getSingleContact, contacts, editContact } = useContactContext();
   const singleContact = contacts?.find(item => item.id == contactId)
     
 
   useEffect(()=>{
-    getContacts()
-  }, [contactId, contacts ])
+    getSingleContact(contactId)
+  }, [])
 
   const [formData, setFormData] = useState({
     name: singleContact?.name || '',
@@ -17,10 +16,6 @@ const EditContactForm = ({ contactId, isOpen, onClose }) => {
     phoneNumber: singleContact?.phoneNumber || '',
     image: singleContact?.image || '',
   });
-
-//   if(!singleContact){
-//     return <h1>Loading</h1>
-//   }
 
   const handleChange = (e) => {
     setFormData({

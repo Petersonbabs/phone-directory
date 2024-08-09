@@ -33,8 +33,8 @@ import { useState } from "react";
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className="bg-red-700">
-                <button onClick={handleDelete} >
+            <AlertDialogAction className="bg-red-700" onClick={handleDelete}>
+                <button  >
                     Delete
                 </button>
             </AlertDialogAction>
