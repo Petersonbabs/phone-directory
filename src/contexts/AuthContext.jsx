@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const baseUrl = import.meta.env.VITE_baseUrl;
 
   const setUserData = (data) => {
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("token", JSON.stringify(data.token));
     localStorage.setItem("user", JSON.stringify(data.user));
     setToken(data.token);
     setUser(data.user);
@@ -53,8 +53,6 @@ const AuthProvider = ({ children }) => {
 
   // LOGIN
   const login = async (formData) => {
-    console.log(formData);
-
     setIsLoading(true);
     try {
       const response = await axios.post(`${baseUrl}/auth/login`, formData);
@@ -77,12 +75,14 @@ const AuthProvider = ({ children }) => {
 
   // LOGOUT
   const logout = async () => {
+    setIsLoading(true)
     try {
       const response = await axios.post(
         `${baseUrl}/auth/logout`,
         { token }
       );
       const data = await response.data;
+      console.log(response);
       if (data.status == "success") {
         localStorage.clear("user");
         localStorage.clear("token");
@@ -94,6 +94,7 @@ const AuthProvider = ({ children }) => {
       console.log(error.response.data.message);
       setAuthMessage(error.response.data.message);
     } finally {
+      setIsLoading(false)
       console.log("done!");
     }
   };

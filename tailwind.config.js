@@ -24,6 +24,7 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         orange: "var(--orange)",
+        blue: "var(--blue)",
         loadingButton: "var(--loading-orange)",
         darkOrange: "var(--dark-orange)",
         primary: {

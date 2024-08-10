@@ -73,8 +73,8 @@ const Login = () => {
               type="submit"
               className={`${isLoading ? 'bg-loadingButton' : 'bg-orange'}  w-full bg-orange text-white py-2 rounded-md hover:bg-darkOrange focus:outline-none focus:ring-2 focus:ring-orange flex gap-2 justify-center items-center`}
             >
-              <div class={`spinner-grow size-6 ${isLoading ? 'block' : 'hidden'} `} role="status">
-                <span class="visually-hidden">...</span>
+              <div className={`spinner-grow size-6 ${isLoading ? 'block' : 'hidden'} `} role="status">
+                <span className="visually-hidden">...</span>
               </div>
               <span>Login</span>
             </button>

@@ -40,7 +40,6 @@ const ContactsProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/contacts`);
       const data = await response.data;
       setContacts(data.allContacts);
-      console.log(data.allContacts);
     } catch (error) {
       console.log(error);
       setStatus("error");
