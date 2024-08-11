@@ -31,7 +31,8 @@ const AuthProvider = ({ children }) => {
   const signup = async (formData) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`${baseUrl}/auth/signup`, formData);
+      const response = await axios.post(`${baseUrl}/auth/signup`, formData, {headers:{"Content-Type": 'application/json'}});
+      console.log(response);
       const data = response.data;
       if (data.status === "success") {
         setUserData(data);
