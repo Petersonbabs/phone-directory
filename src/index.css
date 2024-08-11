@@ -77,6 +77,10 @@
     @apply  hidden h-screen max-h-screen flex-col border border-gray-100 xl:flex w-[30%] !important;
   }
 
+  .header{
+    @apply xl:hidden py-4;
+  }
+
   .profile-list{
     @apply flex justify-between items-center p-2  my-2;
   }
