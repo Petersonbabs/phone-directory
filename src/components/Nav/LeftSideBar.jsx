@@ -13,7 +13,7 @@ const LeftSideBar = () => {
           className="mx-auto drop-shadow-lg  w-20 h-20 rounded-full flex items-center justify-center mt-[-40px]"
           style={{ background: "#E9F2FF" }}
         >
-          <h3 className="text-blue text-3xl ">{user.name[0].toUpperCase()}</h3>
+          <h3 className="text-black text-3xl ">{user.name[0].toUpperCase()}</h3>
         </div>
         <h2 className="text-lg font-semibold mt-4 capitalize text-black">{user?.name}</h2>
         <span className="opacity-50 text-black ">{user.email}</span>

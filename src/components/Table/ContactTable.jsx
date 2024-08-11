@@ -15,9 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useContactContext } from "@/contexts/ContactsContext";
-import { Link } from "react-router-dom";
 import Modal from "../modal/AddContactModal";
-import defaultImage from "../../../public/default-user.png";
 import EditContactModal from "../modal/EditContactModal"; // Adjust the import path
 import DeleteContactModal from "../modal/DeleteContactModal";
 import RightSideBar from "../Nav/RightSideBar";
@@ -102,13 +100,9 @@ const UserListTable = () => {
                         getSingleContact(contact._id);
                       }}
                     >
-                      <div>
-                        <div className="w-8 h-8">
-                          <img
-                            src={contact.image || defaultImage}
-                            alt={contact.name}
-                            className="w-full rounded-full"
-                          />
+                      <div className="flex gap-4 flex-wrap">
+                        <div className="w-8 h-8 bg-[#E9F2FF] rounded-full flex items-center justify-center">
+                          <h1>{contact.name[0].toUpperCase()}</h1>
                         </div>
                         <div>
                           <p className="capitalize font-semibold hover:text-orange">

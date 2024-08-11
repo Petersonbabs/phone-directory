@@ -8,7 +8,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useContactContext } from "@/contexts/ContactsContext";
 import headerImage from "../../assets/header-img.png";
-import { MessageSquareIcon, PhoneCall } from "lucide-react";
+import { MapPin, MessageSquareIcon, PhoneCall, Users } from "lucide-react";
 
 const RightSideBar = ({ children }) => {
   const { singleContact } = useContactContext();
@@ -81,9 +81,31 @@ const RightSideBar = ({ children }) => {
                   </ul>
                 </TabsContent>
                 <TabsContent value="about">
-                  <h2>About</h2>
+                <ul>
+                    <li className="profile-list text-start border-b">
+                      <div>
+                        <span className="opacity-50">Address</span>
+                        <h3>{singleContact.address || '5 Oke-Ilewo Street, Abeokuta, Ogun State, Nigeria'}</h3>
+                      </div>
+                      <span className="flex justify-center items-center bg-green-500 text-white rounded w-[32px] h-[32px]">
+                        <MapPin className="size-4" />
+                      </span>
+                    </li>
+
+                    <li className="profile-list text-start border-b">
+                      <div>
+                        <span className="opacity-50">Gender</span>
+                        <h3>{singleContact.gender || 'male'}</h3>
+                      </div>
+                      <span className="flex justify-center items-center bg-green-500 text-white rounded w-[32px] h-[32px]">
+                        <Users className="size-4" />
+                        
+                      </span>
+                    </li>
+                    
+                  </ul>
                 </TabsContent>
-                <TabsContent></TabsContent>
+                
               </Tabs>
             </SheetDescription>
           </SheetContent>

@@ -3,12 +3,15 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
-  const {isLoading, authMessage, status, signup} = useAuth()
+  const { isLoading, authMessage, status, signup } = useAuth();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [address, setAddress] = useState("");
   const [error, setError] = useState("");
+
   const fullNamePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)+$/;
   const passwordStrength = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,7 +24,9 @@ const Signup = () => {
       name.trim() === "" ||
       password.trim() === "" ||
       email.trim() === "" ||
-      phoneNumber.trim() === ""
+      phoneNumber.trim() === "" ||
+      gender.trim() === "" ||
+      address.trim() === ""
     ) {
       setError("All fields are required");
       return;
@@ -47,11 +52,14 @@ const Signup = () => {
       setError("Provide a valid phone number.");
       return;
     }
+
     const data = {
       name,
       email,
       password,
       phoneNumber,
+      gender,
+      address,
     };
 
     setError("");
@@ -62,7 +70,7 @@ const Signup = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
-        <p className={`mb-4 ${status == 'success' ? 'text-green-500' : 'text-red-500'}`}>{authMessage} </p>
+        <p className={`mb-4 ${status === 'success' ? 'text-green-500' : 'text-red-500'}`}>{authMessage}</p>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -89,7 +97,6 @@ const Signup = () => {
               placeholder="johndoe@gmail.com"
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Phone Number
@@ -102,7 +109,33 @@ const Signup = () => {
               placeholder="08078987876"
             />
           </div>
-
+          <div>
+            <label className="block text-sm font-medium text-gray-500">
+              Gender
+            </label>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="" >Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Address
+            </label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="123 Main St, Abeokuta, Ogun State"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password
@@ -120,8 +153,8 @@ const Signup = () => {
               type="submit"
               className={`w-full ${isLoading ? 'bg-loadingButton' : 'bg-orange'} hover:bg-darkOrange text-white py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange flex gap-2 justify-center items-center`}
             >
-              <div class={`spinner-grow size-6 ${isLoading ? 'block' : 'hidden'} `} role="status">
-                <span class="visually-hidden">...</span>
+              <div className={`spinner-grow size-6 ${isLoading ? 'block' : 'hidden'}`} role="status">
+                <span className="visually-hidden">...</span>
               </div>
               <span>Signup</span>
             </button>
