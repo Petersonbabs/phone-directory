@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${baseUrl}/auth/signup`, formData, {headers:{"Content-Type": 'application/json'}});
-      console.log(response);
+      
       const data = response.data;
       if (data.status === "success") {
         setUserData(data);
@@ -41,13 +41,11 @@ const AuthProvider = ({ children }) => {
         setStatus("success");
         setAuthMessage(data.message);
       }
-      console.log(response);
+      
     } catch (error) {
-      console.log(error);
       setStatus("error");
       setAuthMessage(error.response.data.message);
     } finally {
-      console.log("done!");
       setIsLoading(false);
     }
   };
@@ -57,8 +55,6 @@ const AuthProvider = ({ children }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(`https://phone-directory-backend-ckhi.onrender.com/api/v1/auth/login`, formData);
-      console.log(response);
-      console.log(baseUrl);
       const data = await response.data;
       if (data.status == "success") {
         setUserData(data);
@@ -67,12 +63,10 @@ const AuthProvider = ({ children }) => {
         setStatus("success");
       }
     } catch (error) {
-      console.log(error.response.data.message);
       setStatus("error");
       setAuthMessage(error.response.data.message);
     } finally {
       setIsLoading(false);
-      console.log("done!");
     }
   };
 
@@ -85,7 +79,7 @@ const AuthProvider = ({ children }) => {
         { token }
       );
       const data = await response.data;
-      console.log(response);
+      
       if (data.status == "success") {
         localStorage.clear("user");
         localStorage.clear("token");
@@ -94,11 +88,10 @@ const AuthProvider = ({ children }) => {
         setAuthMessage(data.message);
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      
       setAuthMessage(error.response.data.message);
     } finally {
       setIsLoading(false)
-      console.log("done!");
     }
   };
 

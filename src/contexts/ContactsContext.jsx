@@ -41,11 +41,9 @@ const ContactsProvider = ({ children }) => {
       const data = await response.data;
       setContacts(data.allContacts);
     } catch (error) {
-      console.log(error);
       setStatus("error");
     } finally {
       setIsLoading(false);
-      console.log("done!");
     }
   };
 
@@ -57,11 +55,9 @@ const ContactsProvider = ({ children }) => {
       const data = await response.data;
       setSingleContact(data.contact);
     } catch (error) {
-      console.log(error);
       setStatus("error");
     } finally {
       setIsLoading(false);
-      console.log("done!");
     }
   };
 
@@ -72,17 +68,13 @@ const ContactsProvider = ({ children }) => {
         `${baseUrl}/contacts/${id}`,
         updatedData
       );
-      console.log(response);
       const data = await response.data;
-      console.log(data);
       setSingleContact(data.contact)
       getContacts()
     } catch (error) {
-      console.log(error);
       setStatus("error");
     } finally {
       setIsLoading(false);
-      console.log("done!");
     }
   };
 
@@ -93,11 +85,9 @@ const ContactsProvider = ({ children }) => {
       await axios.delete(`${baseUrl}/contacts/${contactId}`);
       getContacts();
     } catch (error) {
-      console.log(error);
       setStatus("error");
     } finally {
       setIsLoading(false);
-      console.log("done!");
     }
   };
 
