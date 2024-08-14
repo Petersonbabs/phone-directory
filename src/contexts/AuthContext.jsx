@@ -57,6 +57,8 @@ const AuthProvider = ({ children }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${baseUrl}/auth/login`, formData);
+      console.log(response);
+      console.log(baseUrl);
       const data = await response.data;
       if (data.status == "success") {
         setUserData(data);
