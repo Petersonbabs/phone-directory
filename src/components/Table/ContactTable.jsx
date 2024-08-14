@@ -42,7 +42,7 @@ const UserListTable = () => {
       (contact) =>
         contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
+        contact.phoneNumber.toString().includes(searchQuery.toLocaleLowerCase())
     ) || [];
 
   const totalContacts = filteredContacts.length;
@@ -54,8 +54,8 @@ const UserListTable = () => {
 
   return (
     <main className="bg-white flex-1 overflow-auto">
-      <h2 className="text-[#101828; text-lg my-4 fw-bold">
-        CS Department Phone Directory
+      <h2 className="text-[#101828; text-lg xl:text-3xl my-4 ">
+        Computer Science Bolmor Polytechnic Department
       </h2>
 
       <div className="flex gap-2 justify-between items-center mx-auto bg-white py-1 mb-8 flex-wrap">
@@ -88,67 +88,69 @@ const UserListTable = () => {
           </TableHeader>
           <TableBody>
             {displayedContacts.length > 0 ? (
-              displayedContacts.map((contact, index) => (
-                <TableRow
-                  key={index}
-                  className="border-t-none contact-row w-auto"
-                >
-                  <RightSideBar>
-                    <TableCell
-                      className="flex align-center gap-4 hover:shadow"
-                      onClick={() => {
-                        getSingleContact(contact._id);
-                      }}
-                    >
-                      <div className="flex gap-4 flex-wrap">
-                        <div className="w-8 h-8 bg-[#E9F2FF] rounded-full flex items-center justify-center">
-                          <h1>{contact.name[0].toUpperCase()}</h1>
+              displayedContacts.map((contact, index) => {
+                return (
+                  <TableRow
+                    key={index}
+                    className="border-t-none contact-row w-auto"
+                  >
+                    <RightSideBar>
+                      <TableCell
+                        className="flex align-center gap-4 hover:shadow"
+                        onClick={() => {
+                          getSingleContact(contact._id);
+                        }}
+                      >
+                        <div className="flex gap-4 flex-wrap">
+                          <div className="w-8 h-8 bg-[#E9F2FF] rounded-full flex items-center justify-center">
+                            <h1>{contact.name[0].toUpperCase()}</h1>
+                          </div>
+                          <div>
+                            <p className="capitalize font-semibold hover:text-orange">
+                              {contact.name}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {contact.email}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="capitalize font-semibold hover:text-orange">
-                            {contact.name}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {contact.email}
-                          </p>
-                        </div>
-                      </div>
+                      </TableCell>
+                    </RightSideBar>
+                    <TableCell>{contact.phoneNumber}</TableCell>
+                    <TableCell>
+                      <a href={`tel:${contact.phoneNumber}`}>
+                        <PhoneCallIcon className="size-4 hover:text-orange transition-all call-icon" />
+                      </a>
                     </TableCell>
-                  </RightSideBar>
-                  <TableCell>{contact.phoneNumber}</TableCell>
-                  <TableCell>
-                    <a href={`tel:${contact.phoneNumber}`}>
-                      <PhoneCallIcon className="size-4 hover:text-orange transition-all call-icon" />
-                    </a>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button className="bg-defaultPrimary flex gap-3 hover:bg-defaultPrimaryHover">
-                          <EllipsisVertical className="text-black" />
-                        </Button>
-                      </DropdownMenuTrigger>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button className="bg-defaultPrimary flex gap-3 hover:bg-defaultPrimaryHover">
+                            <EllipsisVertical className="text-black" />
+                          </Button>
+                        </DropdownMenuTrigger>
 
-                      <DropdownMenuContent>
-                        <EditContactModal cid={contact._id}>
-                          <p className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg">
-                            Edit
-                          </p>
-                        </EditContactModal>
-                        <DeleteContactModal
-                          handleDelete={() => {
-                            deleteContact(contact._id);
-                          }}
-                        >
-                          <p className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg">
-                            Delete
-                          </p>
-                        </DeleteContactModal>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))
+                        <DropdownMenuContent>
+                          <EditContactModal cid={contact._id}>
+                            <p className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg">
+                              Edit
+                            </p>
+                          </EditContactModal>
+                          <DeleteContactModal
+                            handleDelete={() => {
+                              deleteContact(contact._id);
+                            }}
+                          >
+                            <p className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg">
+                              Delete
+                            </p>
+                          </DeleteContactModal>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell
