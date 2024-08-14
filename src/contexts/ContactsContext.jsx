@@ -25,7 +25,7 @@ const ContactsProvider = ({ children }) => {
         item.phoneNumber == formData.phoneNumber || item.email == formData.email
     );
     if (contactExist) {
-      alert("This contact already exist!");
+    
       return;
     }
     const updatedContacts = [...contacts, formData];
@@ -36,6 +36,7 @@ const ContactsProvider = ({ children }) => {
   // GET CONTACTS
   const getContacts = async () => {
     setIsLoading(true);
+    console.log(baseUrl);
     try {
       const response = await axios(`${baseUrl}/contacts`);
       const data = await response.data;

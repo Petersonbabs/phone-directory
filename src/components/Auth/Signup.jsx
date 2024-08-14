@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({onClose}) => {
   const { isLoading, authMessage, status, signup } = useAuth();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -64,11 +64,12 @@ const Signup = () => {
 
     setError("");
     signup(data);
+    onClose()
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 overflow-y-auto">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md overflow-y-auto">
         <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
         <p className={`mb-4 ${status === 'success' ? 'text-green-500' : 'text-red-500'}`}>{authMessage}</p>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
