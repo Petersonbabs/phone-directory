@@ -36,7 +36,6 @@ const ContactsProvider = ({ children }) => {
   // GET CONTACTS
   const getContacts = async () => {
     setIsLoading(true);
-    console.log(baseUrl);
     try {
       const response = await axios(`${baseUrl}/contacts`);
       const data = await response.data;

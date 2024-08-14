@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
 
   // SIGNUP
   const signup = async (formData) => {
-    console.log(formData);
+    
     setIsLoading(true);
     try {
       const response = await axios.post(`${baseUrl}/auth/signup`, formData, {headers:{"Content-Type": 'application/json'}});

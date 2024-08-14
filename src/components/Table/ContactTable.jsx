@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useContactContext } from "@/contexts/ContactsContext";
-import Modal from "../modal/AddContactModal";
+
 import EditContactModal from "../modal/EditContactModal"; // Adjust the import path
 import DeleteContactModal from "../modal/DeleteContactModal";
 import RightSideBar from "../Nav/RightSideBar";
@@ -66,7 +66,7 @@ const UserListTable = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="border p-2 rounded block"
         />
-        <Modal />
+        
       </div>
       {/* TABLE SECTION */}
 
