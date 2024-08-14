@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`${baseUrl}/auth/login`, formData);
+      const response = await axios.post(`https://phone-directory-backend-ckhi.onrender.com/api/v1/auth/login`, formData);
       console.log(response);
       console.log(baseUrl);
       const data = await response.data;
