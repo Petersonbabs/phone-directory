@@ -59,7 +59,7 @@ const UserListTable = () => {
         <img src={logo} alt="Logo" className="w-full" />
       </div>
       <h2 className="text-[#101828; text-lg xl:text-3xl my-4 text-center">
-        Computer Science Bolmor Polytechnic Department
+        Computer Science Department, Bolmor Polytechnic.
       </h2>
 
       <div className="flex gap-2 justify-between items-center mx-auto bg-white py-1 mb-8 flex-wrap">
