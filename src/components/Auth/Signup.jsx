@@ -13,7 +13,7 @@ const Signup = ({onClose}) => {
   const [error, setError] = useState("");
 
   const fullNamePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)+$/;
-  const passwordStrength = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const passwordStrength = /^.{8,}$/;
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const validPhoneNumber =
     /^(?:\+?234|0)?(70[1-9]|80[1-9]|81[0-9]|90[1-9]|91[0-9])[0-9]{7}$/;
@@ -34,7 +34,7 @@ const Signup = ({onClose}) => {
 
     if (!passwordStrength.test(password)) {
       setError(
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+        "Password must contain at least 8 characters"
       );
       return;
     }

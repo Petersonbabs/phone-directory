@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
 import { EllipsisVertical, PhoneCallIcon } from "lucide-react";
+import logo from '../.../../../../public/IMG-20240819-WA0000-removebg-preview.png'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,7 +55,10 @@ const UserListTable = () => {
 
   return (
     <main className="bg-white flex-1 overflow-auto">
-      <h2 className="text-[#101828; text-lg xl:text-3xl my-4 ">
+      <div className="w-48 my-8 mx-auto">
+        <img src={logo} alt="Logo" className="w-full" />
+      </div>
+      <h2 className="text-[#101828; text-lg xl:text-3xl my-4 text-center">
         Computer Science Bolmor Polytechnic Department
       </h2>
 

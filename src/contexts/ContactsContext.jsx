@@ -17,21 +17,6 @@ const ContactsProvider = ({ children }) => {
   const [singleContact, setSingleContact] = useState({});
   const baseUrl = import.meta.env.VITE_baseUrl;
 
-  const addNewContact = (formData) => {
-    const contactId = Math.floor(Math.random() * 9999);
-    formData.id = contactId;
-    const contactExist = contacts.find(
-      (item) =>
-        item.phoneNumber == formData.phoneNumber || item.email == formData.email
-    );
-    if (contactExist) {
-    
-      return;
-    }
-    const updatedContacts = [...contacts, formData];
-    setContacts(updatedContacts);
-    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
-  };
 
   // GET CONTACTS
   const getContacts = async () => {
@@ -97,7 +82,6 @@ const ContactsProvider = ({ children }) => {
     getSingleContact,
     getContacts,
     setContacts,
-    addNewContact,
     editContact,
     deleteContact,
     isLoading,
